@@ -2,73 +2,55 @@
 "use client";
 import React, { useEffect } from "react";
 import * as THREE from "three";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-const SphereModel = () => {
+const SphereModel = ({ targetElementId }) => {
   useEffect(() => {
-    const mount = document.getElementById("model");
+    const container = document.getElementById(targetElementId);
+    if (!container) {
+      console.error(`Element with ID '${targetElementId}' not found.`);
+      return;
+    }
 
-    // Initialize the scene, camera, and renderer
+    // Initialize Three.js components
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
-      45,
-      window.innerWidth / window.innerHeight,
-      1,
-      500
+      75,
+      container.clientWidth / container.clientHeight,
+      0.1,
+      1000
     );
-    camera.position.set(0, 0, 100);
-    camera.lookAt(0, 0, 0);
-
-    const loader = new GLTFLoader();
-
-    // Load the model
-    loader.load(
-      "/shiba.glb",
-      function (glb) {
-
-        scene.add(glb.scene);
-        console.log(glb.scene);
-      },
-      undefined,
-      function (error) {
-        console.error(error);
-      }
-    );
-
-    // Add directional light to the scene
-    const directionalLight = new THREE.DirectionalLight("yellow", 1);
-    directionalLight.position.set(0, 1, 1).normalize();
-    scene.add(directionalLight);
-
-    // Add a 3D sphere
-    // const geometry = new THREE.SphereGeometry(10, 32, 32);
-    // const material = new THREE.MeshPhongMaterial({ color: 0xff0f90 }); // Red color
-    // const sphere = new THREE.Mesh(geometry, material);
-    // scene.add(sphere);
-
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    mount.appendChild(renderer.domElement);
+    renderer.setSize(container.clientWidth, container.clientHeight);
 
-    renderer.render(scene, camera);
-    function animate() {}
+    // Append renderer's canvas to the target element
+    container.appendChild(renderer.domElement);
 
-    // Handle window resize
-    const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+    // Create sphere
+    const geometry = new THREE.SphereGeometry(15, 32, 16);
+    const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+    const sphere = new THREE.Mesh(geometry, material);
+    scene.add(sphere);
+
+    // Position camera
+    camera.position.z = 50;
+
+    // Animation loop
+    const animate = function () {
+      requestAnimationFrame(animate);
+      sphere.rotation.x += 0.01;
+      sphere.rotation.y += 0.01;
+      renderer.render(scene, camera);
     };
-    window.addEventListener("resize", handleResize);
+
+    animate(); // Start animation loop
 
     // Cleanup function
     return () => {
-      window.removeEventListener("resize", handleResize);
-      mount.removeChild(renderer.domElement);
+      container.removeChild(renderer.domElement); // Remove renderer's canvas on unmount
     };
-  }, []);
+  }, [targetElementId]);
 
-  return <div id="model">{/* <div id="info">Description</div> */}</div>;
+  return <div id={targetElementId} />; // Render an empty div with the specified ID
 };
 
 export default SphereModel;
