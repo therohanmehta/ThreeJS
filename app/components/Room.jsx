@@ -1,8 +1,14 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+import * as THREE from "three";
+import { useLoader } from "@react-three/fiber";
 
 export function Room(props) {
   const { nodes, materials } = useGLTF("/room.glb");
+  const texture = useLoader(THREE.TextureLoader, "/texture.png");
+  const texture1 = useLoader(THREE.TextureLoader, "/texture.png");
+
+  console.log(props.texture);
   return (
     <group {...props} dispose={null}>
       <mesh castShadow receiveShadow geometry={nodes.Cube.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
@@ -1459,9 +1465,15 @@ export function Room(props) {
       />
       <mesh castShadow receiveShadow geometry={nodes.lamp_pichforkup_tri.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
       <mesh castShadow receiveShadow geometry={nodes.lamp_Tube_11.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh castShadow receiveShadow geometry={nodes.TV.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
+      <mesh castShadow receiveShadow geometry={nodes.TV.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]}>
+        {/* <meshStandardMaterial color="red" /> */}
+        <meshStandardMaterial map={texture} />
+      </mesh>
       <mesh castShadow receiveShadow geometry={nodes.Wand.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh castShadow receiveShadow geometry={nodes.Wand_Fenster.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
+      <mesh castShadow receiveShadow geometry={nodes.Wand_Fenster.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]}>
+        {" "}
+        <meshStandardMaterial map={texture} />
+      </mesh>
       <mesh castShadow receiveShadow geometry={nodes.Würfel.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
       <mesh castShadow receiveShadow geometry={nodes.Würfel1.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
       <mesh castShadow receiveShadow geometry={nodes.Würfel10.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
@@ -1547,7 +1559,9 @@ export function Room(props) {
       <mesh castShadow receiveShadow geometry={nodes.Würfel_1.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
       <mesh castShadow receiveShadow geometry={nodes.Würfel_2.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
       <mesh castShadow receiveShadow geometry={nodes.Würfel_3.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh castShadow receiveShadow geometry={nodes.Würfel_4.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
+      <mesh castShadow receiveShadow geometry={nodes.Würfel_4.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]}>
+        <meshStandardMaterial color="red" />
+      </mesh>
       <mesh castShadow receiveShadow geometry={nodes.Zylinder.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
       <mesh castShadow receiveShadow geometry={nodes.Zylinder1.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
       <mesh castShadow receiveShadow geometry={nodes.Zylinder2.geometry} material={materials["default"]} rotation={[Math.PI / 2, 0, 0]} />
