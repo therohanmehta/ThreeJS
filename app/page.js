@@ -1,12 +1,14 @@
 "use client";
 import Image from "next/image";
 // import SphereModel from "./components/Model";
-import { Environment, OrbitControls, Sky } from "@react-three/drei";
+import { Environment, OrbitControls, Sky, Sphere } from "@react-three/drei";
 import { useRef, useState } from "react";
 import { Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Room } from "./components/Room";
+import { LightShadow } from "three";
+import { UpdatedRoom } from "./components/UpdatedRoom";
 
 export default function Home() {
   const groupRef = useRef();
@@ -16,14 +18,11 @@ export default function Home() {
       {/* <SphereModel /> */}
 
       <Canvas style={{ height: "100vh", width: "auto" }} className="">
-        {/* <color attach="background" args={["red"]} /> */}
-        <Environment preset="sunset" />
         <OrbitControls enableZoom={false} />
-        {/* <group ref={groupRef} position={[0, -20, -10]} scale={[15, 15, 15]}> */}
-        <group rotateOnAxis={true} position={[0, 0, 0]} scale={[1, 1, 1]}>
-          <Room texture={texture} />
+        <Environment preset="sunset" />
+        <group position={[0, 0, 0]} scale={[1, 1, 1]}>
+          <UpdatedRoom />
         </group>
-        {/* </group> */}
       </Canvas>
       <div className="absolute top-0 flex flex-col bg-purple-500 border border-red-400 h-36 w-36">
         <button
