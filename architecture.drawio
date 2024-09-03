@@ -1,0 +1,37 @@
+<mxfile host="65bd71144e">
+    <diagram id="YycPl-7ICjHFsSx6mLYc" name="Page-1">
+        <mxGraphModel dx="983" dy="678" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="8227" pageHeight="2169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="4" value="" style="edgeStyle=none;html=1;" parent="1" source="2" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="Room Model Rotation" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="450" y="850" width="230" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="3" target="5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Load and show default texture of&amp;nbsp;&lt;br&gt;walls curtains" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="462.5" y="1085" width="205" height="185" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="5" target="7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Outer Background of the globle image fix" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="790" y="1096.25" width="240" height="162.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="7" target="9">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Lighting Issue to be fixed" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="790" y="850" width="230" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="change the texture logic" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1130" y="850" width="230" height="130" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

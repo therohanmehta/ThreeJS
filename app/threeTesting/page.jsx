@@ -2,7 +2,7 @@
 
 import React, { Suspense } from "react";
 import { Canvas, useLoader } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { Box, OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 const Model = () => {
@@ -14,7 +14,8 @@ const Model = () => {
 
   // Traverse the scene to find the "TV" mesh and apply a unique material with the texture
   scene.traverse((child) => {
-    if (child.isMesh && child.name === "TV") {
+    // console.log(child);
+    if (child.isMesh && child.name === "Würfel") {
       // Create a unique material for the "TV" mesh
       const tvMaterial = new THREE.MeshBasicMaterial({ map: texture });
       child.material = tvMaterial;
@@ -28,11 +29,18 @@ const ThreeTesting = () => {
   return (
     <Canvas style={{ width: "100%", height: "100vh" }}>
       <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
+      {/* <directionalLight position={[10, 10, 5]} intensity={1} /> */}
+      <group position={[0, 0, 0]}>
+        <Box scale={[1, 1, 1]}>
+          <meshStandardMaterial color={"red"} />
+        </Box>
+
+        <pointLight intensity={10} color={"red"} />
+      </group>
       <Suspense fallback={null}>
         <Model />
       </Suspense>
-      <OrbitControls />
+      <OrbitControls enableZoom={false} />
     </Canvas>
   );
 };
